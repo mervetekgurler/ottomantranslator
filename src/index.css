@@ -45,19 +45,23 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border-radius: 12px; /* previously set curvier value */
+  border: none;
+  padding: 15px 25px;
+  font-size: 1.2em;
   font-weight: 500;
   font-family: chulapa, inherit;
-  background-color: #1a1a1a;
+  background-color: #00A67E;
+  color: #ffffff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s, border-color 0.25s; /* combining transitions */
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: #008B6B; /* green shade */
+  border-color: #646cff; /* from your provided CSS */
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
