@@ -1,3 +1,10 @@
+/* New font declaration to match the style of my github pages website */
+@font-face {
+  font-family: 'chulapa';
+  src: url('./assets/fonts/Chulapa-Bold_vmod.otf') format('opentype');
+  font-display: fallback;
+}
+
 body {
   font-family: chupala, Arial, sans-serif;
   background-color: #fafafa;
@@ -42,15 +49,15 @@ textarea {
 }
 
 button {
-  background-color: #00A67E; /* ChatGPT green
+  background-color: #00A67E; /* chatgpt green lol
   color: #ffffff;
-  font-size: 1em;
-  padding: 10px 20px;
-  border-radius: 4px;
+  font-size: 1.2em;         /* Increased font-size */
+  padding: 15px 25px;      /* Increased padding */
+  border-radius: 12px;     /* Made it curvier */
   border: none;
-  text-align: center;
+  display: block;          /* This and the next line will center the button */
+  margin: 20px auto;       /* Increased margin-top and auto for left/right centering */
   cursor: pointer;
-  margin-top: 10px;
   transition: background-color 0.3s;
 }
 
