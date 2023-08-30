@@ -1,10 +1,18 @@
+/* New font declaration to match the style of my github pages website */
+@font-face {
+  font-family: 'chulapa';
+  src: url('./assets/fonts/Chulapa-Bold_vmod.otf') format('opentype');
+  font-display: fallback;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: chulapa, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  /* Using a common dark color for text based on the Chulapa theme */
+  color: #213547; 
   background-color: #242424;
 
   font-synthesis: none;
@@ -42,7 +50,7 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
+  font-family: chulapa, inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
