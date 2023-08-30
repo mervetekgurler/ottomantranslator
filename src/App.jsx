@@ -6,20 +6,6 @@ const App = () => {
   const [text, setText] = useState("");
   const [translation, setTranslation] = useState("");
 
-  const [displayedTranslation, setDisplayedTranslation] = useState("");
-  const [animationIndex, setAnimationIndex] = useState(0);
-
-  useEffect(() => {
-    if (translation && animationIndex < translation.length) {
-      const timer = setTimeout(() => {
-        setDisplayedTranslation((prev) => prev + translation[animationIndex]);
-        setAnimationIndex((prev) => prev + 1);
-      }, 50);  // Adjust this value to control the typing speed
-      return () => clearTimeout(timer);
-    }
-  }, [translation, animationIndex]);
-
-
   const translateText = async () => {
     try {
       const response = await axios.post(
@@ -75,7 +61,7 @@ const App = () => {
       {translation && (
         <>
           <h2>Translation</h2>
-          <p>{displayedTranslation}</p>
+          <p>{translation}</p>
         </>
       )}
     </div>
