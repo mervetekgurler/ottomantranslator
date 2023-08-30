@@ -44,6 +44,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Ottoman Turkish to English Translation</h1>
+      <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly.</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="text">Text to translate:</label>
         <br />
