@@ -1,9 +1,10 @@
-/* New font declaration to match the style of my github pages website */
+/* New font declaration to match the style of my github pages website
 @font-face {
   font-family: 'chulapa';
   src: url('./assets/fonts/Chulapa-Bold_vmod.otf') format('opentype');
   font-display: fallback;
-}
+} */
+
 
 body {
   font-family: "SF Pro Text", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
@@ -75,4 +76,16 @@ p {
   font-size: 1.2em;
   text-align: center;
   line-height: 1.6;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./assets/DALL·E 2023-08-29 19.39.34 - Create a mid-century modern geometric pattern using the following colors #9b993d (Metallic Sunburst), #d5a7b6 (Pale Chestnut), #300764 (Deep Violet).png');
+  opacity: 0.5; /* Adjust this value if you want the image to be more or less transparent */
+  z-index: -1; /* To ensure it stays behind the content */
 }
