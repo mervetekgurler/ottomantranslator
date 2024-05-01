@@ -80,8 +80,8 @@ return (
   <div className="App">
     <h1>Ottoman Turkish to English Translation</h1>
     <h2>Created by Merve Tekgürler, Stanford University.</h2>
-    <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly. Please correct the translation after it appears on the screen by clicking the 'Edit This Translation' button.</p>
-    <p>Your input sentence, model translation, and your correction is anonymously saved for research purposes.</p>
+    <small>For more information please refer to this <a href="https://mervetekgurler.github.io/20240501_GPT4-translator/">post</a>.</small>
+    <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly. Please correct the translation after it appears on the screen by clicking the 'Edit This Translation' button. Your input sentence, model translation, and your correction is anonymously saved for research purposes.</p>
     <form onSubmit={handleSubmit}>
       <label htmlFor="text">Text to translate:</label>
       <textarea id="text" value={text} onChange={(e) => setText(e.target.value)} rows={5} cols={40}></textarea>
