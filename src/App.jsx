@@ -8,12 +8,13 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [correctedTranslation, setCorrectedTranslation] = useState("");
 
-  const sendDataToSheet = async (inputText, translatedText, correctedText) => {
+  const sendDataToSheet = async (inputText, translatedText, correctedText = "", isCorrection = false) => {
   try {
     const response = await axios.post('/api/sheet', {
       inputText,
       translatedText,
-      correctedText  
+      correctedText,
+      isCorrection  // True if this is a correction, false otherwise
     });
     console.log('Sheet updated successfully', response.data);
   } catch (error) {
@@ -48,6 +49,7 @@ const App = () => {
 
       const translatedText = response.data.choices[0].message.content;
       setTranslation(translatedText);
+      sendDataToSheet(text, translation);
     } catch (error) {
       console.error(error);
       alert("Error occurred during translation");
@@ -69,7 +71,7 @@ const handleCloseModal = () => {
 };
 
 const handleSaveCorrection = () => {
-  sendDataToSheet(text, translation, correctedTranslation);
+  sendDataToSheet(text, translation, correctedTranslation, true);
   setShowModal(false);
 };
 
