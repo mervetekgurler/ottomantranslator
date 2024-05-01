@@ -6,7 +6,7 @@ export default async (req, res) => {
   }
 
   try {
-    const { inputText, translatedText, correctedText } = req.body;  // Include correctedText
+    const { inputText, translatedText, correctedText, isCorrection } = req.body;
 
     const auth = new google.auth.GoogleAuth({
       credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
@@ -15,16 +15,19 @@ export default async (req, res) => {
 
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
-    const spreadsheetId = '1yll37zQM-5va2uxSwHPLpoqsGDIFdEvtt9nEB8cBKuc'; 
-    const range = 'Sheet1!A:C';  // Adjust the range to A:C to include a third column
+    const spreadsheetId = 'your_spreadsheet_id'; 
+    const range = 'Sheet1!A:D';
+
+    // Decide whether it's an initial entry or a correction based on 'isCorrection' flag
+    const values = isCorrection ? 
+      [[inputText, translatedText, correctedText, "Correction"]] :
+      [[inputText, translatedText, "", "Initial"]];
 
     await sheets.spreadsheets.values.append({
       spreadsheetId,
       range,
       valueInputOption: 'USER_ENTERED',
-      resource: {
-        values: [[inputText, translatedText, correctedText]],  // Add correctedText here
-      },
+      resource: { values: values },
     });
 
     res.status(200).json({ message: 'Data added successfully' });
@@ -33,4 +36,3 @@ export default async (req, res) => {
     res.status(500).json({ message: 'Failed to update the sheet', error: error.message });
   }
 };
-
