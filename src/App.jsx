@@ -6,6 +6,21 @@ const App = () => {
   const [text, setText] = useState("");
   const [translation, setTranslation] = useState("");
 
+  const sendDataToSheet = async (inputText, translatedText) => {
+  try {
+    const response = await axios.post('/api/sheet', {
+      inputText,
+      translatedText
+    });
+    console.log('Sheet updated successfully', response.data);
+  } catch (error) {
+    console.error('Failed to update sheet:', error);
+    alert('Failed to update sheet');
+  }
+};
+  
+  
+  
   const translateText = async () => {
     try {
       const response = await axios.post(
@@ -30,6 +45,7 @@ const App = () => {
 
       const translatedText = response.data.choices[0].message.content;
       setTranslation(translatedText);
+      sendDataToSheet(text, translatedText);
     } catch (error) {
       console.error(error);
       alert("Error occurred during translation");
