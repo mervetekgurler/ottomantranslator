@@ -5,12 +5,15 @@ import './App.css';
 const App = () => {
   const [text, setText] = useState("");
   const [translation, setTranslation] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [correctedTranslation, setCorrectedTranslation] = useState("");
 
-  const sendDataToSheet = async (inputText, translatedText) => {
+  const sendDataToSheet = async (inputText, translatedText, correctedText) => {
   try {
     const response = await axios.post('/api/sheet', {
       inputText,
-      translatedText
+      translatedText,
+      correctedText  // new corrected text parameter
     });
     console.log('Sheet updated successfully', response.data);
   } catch (error) {
@@ -57,31 +60,49 @@ const App = () => {
     translateText();
   };
 
-  return (
-    <div className="App">
-      <h1>Ottoman Turkish to English Translation</h1>
-      <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly.</p>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="text">Text to translate:</label>
-        <br />
-        <textarea
-          id="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          rows={5}
-          cols={40}
-        ></textarea>
-        <br />
-        <button type="submit">Translate</button>
-      </form>
-      {translation && (
-        <>
-          <h2>Translation</h2>
-          <p>{translation}</p>
-        </>
-      )}
-    </div>
-  );
+  const handleOpenModal = () => {
+  setCorrectedTranslation(translation); // Prepopulate with the translation
+  setShowModal(true);
 };
+
+const handleCloseModal = () => {
+  setShowModal(false);
+};
+
+const handleSaveCorrection = () => {
+  sendDataToSheet(text, translation, correctedTranslation);
+  setShowModal(false);
+};
+
+
+return (
+  <div className="App">
+    <h1>Ottoman Turkish to English Translation</h1>
+    <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly.</p>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="text">Text to translate:</label>
+      <textarea id="text" value={text} onChange={(e) => setText(e.target.value)} rows={5} cols={40}></textarea>
+      <button type="submit">Translate</button>
+    </form>
+    {translation && (
+      <>
+        <h2>Translation</h2>
+        <p>{translation}</p>
+        <button onClick={handleOpenModal}>Edit This Translation</button>
+      </>
+    )}
+    {showModal && (
+      <div className="modal">
+        <div className="modal-content">
+          <textarea value={correctedTranslation} onChange={(e) => setCorrectedTranslation(e.target.value)} rows={5} cols={50}></textarea>
+          <button onClick={handleSaveCorrection}>Save Correction</button>
+          <button onClick={handleCloseModal}>Close</button>
+        </div>
+      </div>
+    )}
+  </div>
+);
+
+
 
 export default App;
