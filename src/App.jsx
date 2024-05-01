@@ -13,7 +13,7 @@ const App = () => {
     const response = await axios.post('/api/sheet', {
       inputText,
       translatedText,
-      correctedText  // new corrected text parameter
+      correctedText  
     });
     console.log('Sheet updated successfully', response.data);
   } catch (error) {
@@ -48,7 +48,6 @@ const App = () => {
 
       const translatedText = response.data.choices[0].message.content;
       setTranslation(translatedText);
-      sendDataToSheet(text, translatedText);
     } catch (error) {
       console.error(error);
       alert("Error occurred during translation");
