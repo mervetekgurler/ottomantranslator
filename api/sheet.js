@@ -15,7 +15,7 @@ export default async (req, res) => {
 
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
-    const spreadsheetId = 'your_spreadsheet_id'; 
+    const spreadsheetId = '1yll37zQM-5va2uxSwHPLpoqsGDIFdEvtt9nEB8cBKuc'; 
     const range = 'Sheet1!A:D';
 
     // Decide whether it's an initial entry or a correction based on 'isCorrection' flag
