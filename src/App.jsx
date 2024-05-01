@@ -79,8 +79,9 @@ const handleSaveCorrection = () => {
 return (
   <div className="App">
     <h1>Ottoman Turkish to English Translation</h1>
-    <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly.</p>
-    <p>Please correct the translation after it appears on the screen by clicking the 'Edit This Translation' button.</p>
+    <h2>Created by Merve Tekgürler, Stanford University.</h2>
+    <p>This website uses OpenAI's GPT-4 API to translate Ottoman Turkish sentences into English. Please enter a sentence (up to 50 words) to get its English translation instantly. Please correct the translation after it appears on the screen by clicking the 'Edit This Translation' button.</p>
+    <p>Your input sentence, model translation, and your correction is anonymously saved for research purposes.</p>
     <form onSubmit={handleSubmit}>
       <label htmlFor="text">Text to translate:</label>
       <textarea id="text" value={text} onChange={(e) => setText(e.target.value)} rows={5} cols={40}></textarea>
